@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>What To Wear</title>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+    $(document).ready(function(){
+
+
+        var animal = prompt("which do you prefer: bunny, cat, or dog?");
+        var possibleanimals = ["bunny", "cat", "dog"];
+
+
+
+
+$("#output").html("What are you wearing today, Weather" + animal + "?");
+
+      var dateTime = new Date();
+			var currentEpoch = dateTime.getTime();
+
+      var api = {};
+
+      api.key = "";
+        api.state = "NY";
+        api.city = "Manhattan";
+
+        api.conditions = "http://cooper-union-weather-proxy.herokuapp.com/weather/"+api.state+"/"+api.city;
+        $.ajax({
+    				  type: 'GET',
+    				  dataType: 'json',
+    				  url: api.conditions,
+    				  success: function(response){
+                    $("#location").html(api.city + ", " + api.state);
+
+
+                var tempfeelslike = response.current_observation.feelslike_f;
+
+                if(tempfeelslike >= 70 && tempfeelslike < 90){
+                  $('#weatherfriend').html("<img class='animalimg' src='" + animal + "_shirt.gif'/>");
+                  $('#whattowear').html("it feels like " + tempfeelslike + " degrees outside... </br>just a tshirt is fine today!");
+                  $('#temperature').html( + tempfeelslike + " degrees f");
+                }
+
+                else if (tempfeelslike >= 30 && tempfeelslike <70){
+                  $('#weatherfriend').html("<img class='animalimg' src='" + animal + "_sweater.gif'/>");
+                  $('#whattowear').html("it feels like " + tempfeelslike + " degrees outside... </br>sweater weather for me!");
+                }
+
+                else {
+                  	$('#weatherfriend').html(tempfeelslike + " degrees f");
+                }
+
+
+
+    				  }
+
+
+
+    				});
+
+    			});
+    </script>
+    <style>
+
+    body{
+      background-color:white;
+    }
+      #bodywrapper{
+        text-align:center;
+
+      }
+
+      .animalimg{
+      width:15vw;
+      margin-bottom:5vh;
+      }
+
+      h1{
+        margin:10vh;
+      }
+
+
+    </style>
+</head>
+<body>
+
+
+
+  <div id="bodywrapper">
+
+    <h1 id="output"></h1>
+      <div id="weatherfriend"></div>
+      <div id="whattowear"></div>
+      <div id="temperature"></div>
+      <div id="location"></div>
+</div>
+
+</body>
+</html>
