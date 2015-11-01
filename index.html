@@ -38,12 +38,19 @@ $("#output").html("What are you wearing today, Weather" + animal + "?");
                 if(tempfeelslike >= 70 && tempfeelslike < 90){
                   $('#weatherfriend').html("<img class='animalimg' src='" + animal + "_shirt.gif'/>");
                   $('#whattowear').html("it feels like " + tempfeelslike + " degrees outside... </br>just a tshirt is fine today!");
-                  $('#temperature').html( + tempfeelslike + " degrees f");
+
                 }
 
-                else if (tempfeelslike >= 30 && tempfeelslike <70){
+                else if (tempfeelslike >= 55 && tempfeelslike <70){
                   $('#weatherfriend').html("<img class='animalimg' src='" + animal + "_sweater.gif'/>");
                   $('#whattowear').html("it feels like " + tempfeelslike + " degrees outside... </br>sweater weather for me!");
+
+                }
+
+                else if (tempfeelslike >= 30 && tempfeelslike <55){
+                  $('#weatherfriend').html("<img class='animalimg' src='" + animal + "_coat.gif'/>");
+                  $('#whattowear').html("it feels like " + tempfeelslike + " degrees outside... </br>kind of cold out, better put on a coat!");
+
                 }
 
                 else {
